@@ -14,4 +14,5 @@ for entry in data.get("data", []):
     properties = entry.get("Properties", {})
     hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
-    print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
+    if "2003" or "2008" in operatingsystem:
+        print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
