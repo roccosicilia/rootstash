@@ -13,16 +13,18 @@ with open(input_file, "r", encoding="utf-8-sig") as f:
 
 # print a list of interesting Windows hosts
 hostlist = []
-print("##### Interesting Windows hosts:")
+fulllist = []
+print("\n##### Interesting Windows hosts:")
 for entry in data.get("data", []):
     properties = entry.get("Properties", {})
     hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
+    fulllist.append(hostname)
     if isinstance(operatingsystem, str) and ("2003" in operatingsystem or "2008" in operatingsystem or "XP" in operatingsystem or "Windows 7" in operatingsystem):
         print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
         hostlist.append(hostname)
 
-# check if the host is online
+# check if the interesting host is online
 print("\n##### Checking if hosts are online:")
 for host in hostlist:
     response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
@@ -30,3 +32,11 @@ for host in hostlist:
         print(f"{host} is online with IP address {os.popen(f'getent hosts {host}').read().strip().split()[0]}")
     else:
         print(f"{host} is offline")
+
+# check for any online hosts
+print("\n##### Checking for any online hosts:")
+for host in fulllist:
+    response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
+    if response == 0:
+        print(f"{host} is online with IP address {os.popen(f'getent hosts {host}').read().strip().split()[0]}")
+
