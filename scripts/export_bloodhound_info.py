@@ -10,5 +10,8 @@ input_file = sys.argv[1]
 with open(input_file, "r", encoding="utf-8-sig") as f:
     data = json.load(f)
 
-for element in data.get("Aces", []):
-    print(f"Hostname: {element['name']}, RightName: {element['RightName']}")
+for entry in data.get("data", []):
+    properties = entry.get("Properties", {})
+    hostname = properties.get("name", "N/A")
+    for ace in entry.get("Aces", []):
+        print(f"Hostname: {hostname}, PrincipalSID: {ace.get('PrincipalSID')}, RightName: {ace.get('RightName')}")
