@@ -17,17 +17,17 @@ for entry in data.get("data", []):
     operatingsystem = properties.get("operatingsystem", "N/A")
 
     # print a list of interesting Windows hosts
+    print("##### Interesting Windows hosts:")
     hostlist = []
     if isinstance(operatingsystem, str) and ("2003" in operatingsystem or "2008" in operatingsystem or "XP" in operatingsystem or "Windows 7" in operatingsystem):
         print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
         hostlist.append(hostname)
 
-    # check if the host is online
-    for host in hostlist:
-        response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
-        if response == 0:
-            print(f"{host} is online with IP address {os.popen(f'getent hosts {host}').read().strip().split()[0]}")
-        else:
-            print(f"{host} is offline")
-
-    
+# check if the host is online
+print("\n##### Checking if hosts are online:")
+for host in hostlist:
+    response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
+    if response == 0:
+        print(f"{host} is online with IP address {os.popen(f'getent hosts {host}').read().strip().split()[0]}")
+    else:
+        print(f"{host} is offline")
