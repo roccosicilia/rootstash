@@ -14,5 +14,5 @@ for entry in data.get("data", []):
     properties = entry.get("Properties", {})
     hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
-    if "2003" in operatingsystem:
+    if isinstance(operatingsystem, str) and ("2003" in operatingsystem or "2008" in operatingsystem):
         print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
