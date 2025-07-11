@@ -12,6 +12,6 @@ with open(input_file, "r", encoding="utf-8-sig") as f:
 
 for entry in data.get("data", []):
     properties = entry.get("Properties", {})
-    hostname = properties.get("distinguishedname", "N/A")
+    hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
     print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
