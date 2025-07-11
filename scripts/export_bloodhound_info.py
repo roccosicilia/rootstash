@@ -36,16 +36,21 @@ for host in oldhostlist:
     else:
         print(f"{host} is offline")
 
-# print a list of Windows hosts with SMB shares
+# generate/print a list of Windows hosts with SMB shares
 print("\n##### Windows hosts:")
 for entry in data.get("data", []):
     properties = entry.get("Properties", {})
     hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
-    fulllist.append(hostname)
     if isinstance(operatingsystem, str) and ("Server" in operatingsystem):
-        print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
-        oldhostlist.append(hostname)
+        # print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
+        srvhostlist.append(hostname)
+
+# check for any online Windows Server hosts
+for host in srvhostlist:
+    response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
+    if response == 0:
+        print(f"{host} is online with IP address {os.popen(f'getent hosts {host}').read().strip().split()[0]}")
 
 # check for any online hosts
 if full == 'full':
