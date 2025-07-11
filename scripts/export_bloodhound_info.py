@@ -7,7 +7,7 @@ if len(sys.argv) != 2:
 
 input_file = sys.argv[1]
 
-with open(input_file, "r") as f:
+with open(input_file, "r", encoding="utf-8-sig") as f:
     data = json.load(f)
 
 for element in data.get("Aces", []):
