@@ -11,14 +11,14 @@ input_file = sys.argv[1]
 with open(input_file, "r", encoding="utf-8-sig") as f:
     data = json.load(f)
 
+# print a list of interesting Windows hosts
+hostlist = []
+print("##### Interesting Windows hosts:")
 for entry in data.get("data", []):
     properties = entry.get("Properties", {})
     hostname = properties.get("name", "N/A")
     operatingsystem = properties.get("operatingsystem", "N/A")
 
-    # print a list of interesting Windows hosts
-    print("##### Interesting Windows hosts:")
-    hostlist = []
     if isinstance(operatingsystem, str) and ("2003" in operatingsystem or "2008" in operatingsystem or "XP" in operatingsystem or "Windows 7" in operatingsystem):
         print(f"Hostname: {hostname}, operatingsystem: {operatingsystem}")
         hostlist.append(hostname)
