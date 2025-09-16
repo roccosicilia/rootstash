@@ -13,5 +13,8 @@ int main(void) {
     printf("Test della funzione somma (sum): %d\n", sum(10, 10));
     // test della funzione variatica printf
     printf("Test: passo a printf solo un decimale ma ne prevedo due: %d %d\n", 6);
+    
+    
+    
     return 0;
 }
