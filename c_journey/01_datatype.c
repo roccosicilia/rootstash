@@ -8,7 +8,9 @@ int main() {
     float b = 1.1;
 
     // altri tipi di variabili
-    char c = 127;
+    char c = 127; // 8 bit
+    short s = 1000; // 16 bit
+    long l = 100000; // 32 bit
 
     //print dele variabili
     printf("Valore decimale di a: %d\n", a);
@@ -16,7 +18,7 @@ int main() {
 
     //print di un char offsettato
     c++;
-    printf("Valore char di c: %c\n", c);
+    printf("Valore char di c (massimo+1): %c\n", c);
 
     // dimensione del tipo intero nel mio sistema
     // %lu sta per "long unsigned" che è il tipo di dato di sizeof
