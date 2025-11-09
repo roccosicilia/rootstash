@@ -1,7 +1,7 @@
 # Discovery
 
 Bash Script per discovery ICMP di una rete:
-''' bash
+``` bash
 #!/bin/bash
 
 if [ -z "$1" ]; then
@@ -22,15 +22,15 @@ wait
 
 echo ""
 echo "Scansione completata"
-'''
+```
 
 Scansione via NC sull'output della discovery:
-''' bash
+``` bash
 while read r; do nc -v -z $r 1-65535; done < $iplist_file
-'''
+```
 
 PowerShell discovery:
-''' powershell
+``` powershell
 param (
     [Parameter(Mandatory = $true)]
     [string]$IPAddress
@@ -75,7 +75,4 @@ foreach ($port in $ports) {
 }
 
 Write-Host "`nVerifica completata." -ForegroundColor Cyan
-
-'''
-
-
+```
